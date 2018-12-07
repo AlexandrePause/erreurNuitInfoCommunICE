@@ -23,7 +23,7 @@
                 </div>
                 <div class="col">
                         <div v-model="seenName" v-if="nom.length > 10" id="hide">
-                            <img src="../assets/nomMax.png">
+                            <img class= "nomMaxIMG" src="../assets/nomMax.png">
                         </div>
                 </div>
             </div>
@@ -39,7 +39,7 @@
                 </div>
                 <div class="col">
                         <div v-if="prenom.length > 10" id="hide">
-                            <img src="../assets/prenomMax.png">
+                            <img class= "nomMaxIMG" src="../assets/prenomMax.png">
                         </div>
                 </div>
             </div>
@@ -47,82 +47,27 @@
                 <div class="col"></div>
                 <div class="col">
                      <div class="form-group">
-                        <label for="email">Email</label>
-                        <input v-model="email" v-bind:class="{ 'is-invalid': email.length > 10 }"
-                        type="email" class="form-control isvalid" id="email" aria-describedby="emailHelp" 
-                        placeholder="exemple@domaine.com">
+                              <label for="email">Email</label>
+                              <input placeholder="exemple@domaine.com" type="email" v-model="email" v-validate="'required|email'" name="email" class="form-control" :class="{ 'is-invalid': errors.has('email') }" />
+                              <div v-if="errors.has('email')" class="invalid-feedback">{{ errors.first('email') }}</div>
                     </div>
                 </div>
                 <div class="col">
-                        <div v-if="prenom.length > 10" id="hide">
-                            <img src="../assets/prenomMax.png">
+                        <div v-if="errors.has('email')" id="hide">
+                            <img class= "nomMaxIMG" src="../assets/prenomMax.png">
                         </div>
                 </div>
             </div>
-        </div>
+             <div class="row align-items-center">
+                <div class="col"></div>
+                <div class="col">
+                     <button type="button" class="btn btn-warning center"><router-link to="/p">Valider</router-link></button>
+                </div>
+                <div class="col">
+                </div>
+            </div>
     </div>
-
-    <div>
-        <div class="jumbotron">
-        <div class="row align-items-center">
-            <div class="col">
-                
-            </div>
-            <div class="col">
-                        <h1>Votre avis sur la nuit de l'info 2018</h1>
-                <form>
-                    <div class="form-group">
-                        <label for="pseudo">Votre nom</label>
-                        <input v-bind:class="{ 'is-invalid': message.length > 2 }"
-                        type="email" class="form-control isvalid" id="exampleInputEmail1" aria-describedby="emailHelp" 
-                        placeholder="Saisir nom">
-                        <div v-if="message.length > 2" id="hide">
-                            <img src="../assets/logo.png">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="exampleInputEmail1">Email address</label>
-                        <input v-bind:class="{ 'is-invalid': message.length > 2 }"
-                        type="email" class="form-control isvalid" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
-                        <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
-                        <div v-if="message.length > 2" id="hide">
-                            <img src="../assets/logo.png">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="exampleInputPassword1">Password</label>
-                        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-                    </div>
-                    <div class="form-check">
-                        <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                        <label class="form-check-label" for="exampleCheck1">Check me out</label>
-                    </div>
-                <button type="submit" class="btn btn-primary">Submit</button>
-                </form>
-            </div>
-            <div class="col">
-            
-            </div>
-            </div>
-        </div>
-
-
-            
-
-
-            <div>
-            <input v-model="message" v-on:keyup="keymonitor" placeholder="edit me">
-            <p>Message is: {{ message }}</p>
-        </div>
-        <div>
-            <p v-if="seen">Message Can Be Seen!</p>
-            <input v-model="message" v-on:keyup="seen =! seen" placeholder="Push me">
-        </div>
-    </div>
-
-</div>
-
-
+</div></div>
 </template>
 
 <script>
@@ -144,6 +89,8 @@
                 console.log(event.key);
             }
             else{
+                console.log(event.currentTarget.value);
+                // event.currentTarget.value = event.currentTarget.value.slice(0, event.currentTarget.length);
                this.seenName = true;
             }
             //console.log(event.key);
