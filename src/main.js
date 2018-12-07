@@ -5,7 +5,9 @@ import App from './App'
 import router from './router'
 import BootstrapVue from 'bootstrap-vue'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
+import VeeValidate from 'vee-validate'
 Vue.use(BootstrapVue)
+Vue.use(VeeValidate)
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */
