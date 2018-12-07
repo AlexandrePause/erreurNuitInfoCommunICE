@@ -54,7 +54,7 @@
                 </div>
                 <div class="col">
                         <div v-if="errors.has('email')" id="hide">
-                            <img class= "nomMaxIMG" src="../assets/prenomMax.png">
+                            <img class= "nomMaxIMG" src="../assets/adresse.png">
                         </div>
                 </div>
             </div>
