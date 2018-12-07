@@ -16,13 +16,13 @@
                 <div class="col">
                      <div class="form-group">
                         <label for="nom">Nom</label>
-                        <input v-on:keyup="keymonitor" v-model="nom" v-bind:class="{ 'is-invalid': nom.length > 10 }"
+                        <input v-on:keypress="keymonitor" v-model="nom" v-bind:class="{ 'is-invalid': nom.length > 10 }"
                         type="email" class="form-control isvalid" id="nom" aria-describedby="emailHelp" 
                         placeholder="Saisir nom">
                     </div>
                 </div>
                 <div class="col">
-                        <div v-if="nom.length > 10" id="hide">
+                        <div v-model="seenName" v-if="nom.length > 10" id="hide">
                             <img src="../assets/nomMax.png">
                         </div>
                 </div>
@@ -134,13 +134,19 @@
             nom: '',
             prenom: '',
             email: '',
-            seen: false
+            seen: false,
+            seenName: false
         }
     },
     methods: {
         keymonitor: function(event) {
-           
-            console.log(event.key);
+            if(event.key.match(/^[A-Za-z]+$/)){
+                console.log(event.key);
+            }
+            else{
+               this.seenName = true;
+            }
+            //console.log(event.key);
             this.seen= true;
             if(event.key == "Enter"){
                 console.log('the id of the input was:' + event.currentTarget.id);
