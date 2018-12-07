@@ -3,6 +3,7 @@
   <div id="desert">
         <div class="circular">
           <img src="../assets/desert.jpg" id="background">
+          <img src="../assets/IMGError404.png" id="imgErrorC">
           <img v-if="imgSeen1" src="../assets/etoile1.png" id="etoile1">
           <img v-if="imgSeen2" src="../assets/etoile2.png" id="etoile2">
           <img v-if="imgSeen3" src="../assets/etoile3.png" id="etoile3">
